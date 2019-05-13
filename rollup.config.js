@@ -13,7 +13,6 @@
 
 import typescript from "rollup-plugin-typescript2";
 import nodeResolve from "rollup-plugin-node-resolve";
-import { terser } from "rollup-plugin-terser";
 import loadz0r from "rollup-plugin-loadz0r";
 import dependencyGraph from "./lib/dependency-graph-plugin.js";
 import chunkNamePlugin from "./lib/chunk-name-plugin.js";
@@ -26,6 +25,7 @@ import { readFileSync } from "fs";
 import constsPlugin from "./lib/consts-plugin.js";
 import ejsAssetPlugin from "./lib/ejs-asset-plugin.js";
 import assetTransformPlugin from "./lib/asset-transform-plugin.js";
+import { terser } from "./lib/minify.js";
 import postCSSUrl from "postcss-url";
 
 // Delete 'dist'
@@ -128,6 +128,6 @@ export default {
       propList: ["facadeModuleId", "fileName", "imports", "code", "isAsset"]
     }),
     resourceListPlugin(),
-    terser()
+    terser
   ]
 };
